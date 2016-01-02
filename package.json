@@ -1,0 +1,15 @@
+{
+  "name": "socket-street",
+  "version": "0.0.1",
+  "description": "Websocket REST like db server",
+  "main": "index.js",
+  "author": "Jon Hemstreet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hemstreet/Socket-Street/issues"
+  },
+  "homepage": "https://github.com/hemstreet/Socket-Street#readme",
+  "dependencies": {
+
+  }
+}
