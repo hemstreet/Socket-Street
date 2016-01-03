@@ -15,12 +15,8 @@ var App = function AppConstructor(_config) {
 };
 
 App.prototype.init = function init(){
-    this.setupSocketServer({
-        basePath: this.config.basePath
-    });
-    this.setupWebServer({
-        basePath: this.config.basePath
-    });
+    this.setupSocketServer();
+    this.setupWebServer();
 };
 
 App.prototype.setupSocketServer = function setupSocketServer() {
@@ -28,7 +24,8 @@ App.prototype.setupSocketServer = function setupSocketServer() {
         baseSocketPath = paths['adapters'] + paths['socket'],
         socketModule = this.config.socket || this.config.defaults.socket;
 
-    require(baseSocketPath + socketModule);
+    var Socket = require(baseSocketPath + socketModule),
+        socket = new Socket();
 };
 
 App.prototype.setupWebServer = function setupWebServer() {
@@ -38,7 +35,9 @@ App.prototype.setupWebServer = function setupWebServer() {
 
     var WebServer = require(baseWebServerPath + webServerModule );
 
-    this.webServer = new WebServer();
+    this.webServer = new WebServer({
+        basePath: this.config.basePath
+    });
 
     this.webServer.init();
 };

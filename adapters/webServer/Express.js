@@ -10,8 +10,6 @@ var Express = function ExpressConstructor(_config) {
 
     _.extend(this.config, config, _config);
 
-    console.log(this.config, config, _config);
-
 };
 
 Express.prototype.init = function ExpressInit() {
@@ -29,8 +27,7 @@ Express.prototype.init = function ExpressInit() {
 
 Express.prototype.setupRoutes = function ExpressSetupRoutes() {
     this.app.get('/', function (req, res) {
-        console.log(this.config);
-        res.sendFile(this.config.paths.views + '/index.html');
+        res.sendFile(this.config.basePath + "/" + this.config.paths.views + '/index.html');
     }.bind(this));
 };
 

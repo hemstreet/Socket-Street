@@ -19,8 +19,8 @@ Socket.prototype.init = function SocketIoInit() {
         socket.on(config.events.disconnect, function () {
             console.log('user disconnected!');
         });
-        socket.on('testEvent', function () {
-            console.log('test event fired');
+        socket.on('testEvent', function (data) {
+            console.log('test event fired', data);
         });
     });
 };
