@@ -47,15 +47,14 @@ App.prototype.setupWebServer = function() {
 
 App.prototype.setupLogger = function() {
 
-    this.logger.create('Cat', {
-        title: 'Test Title'
+    this.logger.create('Event', {
+        title: 'Test Title',
+        data: {
+            myData: "data"
+        }
     });
 
-    this.logger.get('Cat');
-
-    this.logger.get('Cat', {
-        title: 'Test Title'
-    });
+    this.logger.get('Event');
 
 };
 

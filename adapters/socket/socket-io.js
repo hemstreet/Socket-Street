@@ -20,9 +20,9 @@ Socket.prototype.init = function() {
             console.log('user disconnected!');
         });
 
-        //socket.on('testEvent', function (data) {
-        //    console.log('test event fired', data);
-        //});
+        socket.on('clickedWebButton', function (data) {
+            console.log('test event fired', data);
+        });
 
     });
 };

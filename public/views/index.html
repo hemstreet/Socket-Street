@@ -5,22 +5,16 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 <a href="#" name="eventFire">Fire event</a>
+<span name="numUsers">1</span>
 <script>
     (function($) {
         var socket = io('http://localhost:3001');
 
         var $button = $('[name="eventFire"]');
         $button.on('click', function() {
-            socket.emit('testEvent', {
+            socket.emit('clickedWebButton', {
                 data: "dummy data here"
             });
-
-        });
-
-        socket.emit('news', {});
-
-        socket.on('myotherevent', function(data) {
-            console.log('my other event', data);
         });
 
     })(jQuery);
