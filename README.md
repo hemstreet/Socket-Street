@@ -1,8 +1,13 @@
 # Socket-Street
 
-Socket based REST like database server
+Socket based CRUD server
 
 Setup
 ==
 * `npm install` 
 * `gulp`
+
+[ ] Fire events for CRUD, data passed is `{ model: model, data, data }` for update pass GUID
+[ ] Integrate mongoose
+[ ] Implement Angular admin panel
+[ ] Apply styles to front end
