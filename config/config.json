@@ -1,0 +1,18 @@
+{
+  "paths": {
+    "adapters" : "./adapters/",
+    "views" : "./public/views/",
+    "socket" : "socket/",
+    "webServer" : "webServer/"
+  },
+  "defaults" : {
+    "socket" : "socket-io",
+    "webServer" : "Express",
+    "webServerPort" : 3000,
+    "socketPort" : 3001
+  },
+  "events" : {
+    "connection" : "connection",
+    "disconnect" : "disconnect"
+  }
+}
