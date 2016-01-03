@@ -5,8 +5,6 @@ The purpose of this project is to provide a prototype of a socket server for com
 The server will also be able to be used for CRUD actions via events and save data into a database. There will be a web 
 interface to manage the collections. This will act as a supporting platform for future socket projects.
 
-Socket based CRUD server
-
 * [ ] Fire events for CRUD, data passed is `{ model: model, data, data }` for update pass GUID
 * [ ] Integrate mongoose
 * [ ] Implement Angular admin panel
