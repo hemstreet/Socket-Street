@@ -4,7 +4,7 @@ var config = require('../../config/config'),
     bodyParser = require('body-parser'),
     router = express.Router();
 
-var Express = function ExpressConstructor(_config) {
+var Express = function(_config) {
 
     this.config = {};
 
@@ -12,7 +12,7 @@ var Express = function ExpressConstructor(_config) {
 
 };
 
-Express.prototype.init = function ExpressInit() {
+Express.prototype.init = function() {
 
     this.app = express();
 
@@ -25,13 +25,13 @@ Express.prototype.init = function ExpressInit() {
     this.run();
 };
 
-Express.prototype.setupRoutes = function ExpressSetupRoutes() {
+Express.prototype.setupRoutes = function() {
     this.app.get('/', function (req, res) {
         res.sendFile(this.config.basePath + "/" + this.config.paths.views + '/index.html');
     }.bind(this));
 };
 
-Express.prototype.run = function ExpressRun() {
+Express.prototype.run = function() {
     var port = (this.config.webServerPort) ? this.config.webServerPort : this.config.defaults.webServerPort;
     console.log("Web Server running on port", port);
     this.app.listen(port);

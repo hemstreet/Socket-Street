@@ -7,12 +7,20 @@
 <a href="#" name="eventFire">Fire event</a>
 <script>
     (function($) {
-        var socket = io(':3001');
+        var socket = io('http://localhost:3001');
 
-        $('[name="eventFire"]').on('click', function() {
+        var $button = $('[name="eventFire"]');
+        $button.on('click', function() {
             socket.emit('testEvent', {
                 data: "dummy data here"
             });
+
+        });
+
+        socket.emit('news', {});
+
+        socket.on('myotherevent', function(data) {
+            console.log('my other event', data);
         });
 
     })(jQuery);

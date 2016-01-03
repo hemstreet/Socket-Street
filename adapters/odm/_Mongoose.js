@@ -25,7 +25,6 @@ Mongoose.prototype.model = function(name) {
 
 Mongoose.prototype.save = function(model) {
 
-
 };
 
 Mongoose.prototype.create = function(name, data) {
