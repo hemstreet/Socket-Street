@@ -3,7 +3,8 @@
     "adapters" : "./adapters/",
     "views" : "./public/views/",
     "socket" : "socket/",
-    "webServer" : "webServer/"
+    "webServer" : "webServer/",
+    "model" : "./model/schema/"
   },
   "defaults" : {
     "socket" : "socket-io",
