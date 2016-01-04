@@ -15,15 +15,14 @@ Crud.prototype.create = function(socket, data) {
 
     var Model = this.mongoose.model(data.modelName),
         model = new Model(),
-        modelData = data.data;
+        modelData = data.data,
+        fields = require('../schemas/' + data.modelName).fields;
 
-    if(modelData.title) {
-        model.title = modelData.title;
-    }
-
-    if(modelData.body) {
-        model.body = modelData.body;
-    }
+    _.forEach(fields, function(value, key) {
+        if(modelData[key]) {
+            model[key] = modelData[key];
+        }
+    });
 
     model.save(function(err) {
         if(err) {

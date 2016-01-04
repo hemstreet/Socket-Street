@@ -5,7 +5,7 @@
       "type": "String",
       "default": "test event"
     },
-    "body": {
+    "description": {
       "type": "String",
       "default": "test bottle"
     }
