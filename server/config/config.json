@@ -1,0 +1,13 @@
+{
+  "mongo" : "mongodb://localhost/socket",
+  "events" : {
+    "willCreate" : "Event:will-create",
+    "didCreate" : "Event:did-create",
+    "willRead" : "Event:will-read",
+    "didRead" : "Event:did-read",
+    "willUpdate" : "Event:will-update",
+    "didUpdate" : "Event:did-update",
+    "willDelete" : "Event:will-delete",
+    "didDelete" : "Event:did-delete"
+  }
+}

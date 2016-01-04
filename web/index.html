@@ -5,6 +5,7 @@
     <script src="//cdn.socket.io/socket.io-1.3.7.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <a href="#" id="fireEvent">Fire Event!</a>
+    <a href="#" id="fireGlobalEvent">Fire Global Event!</a>
     <script>
         (function($) {
             var socket = io.connect('//localhost:3000');
@@ -12,12 +13,22 @@
             $('#fireEvent').on('click', function(e) {
                 e.stopPropagation();
 
-                socket.emit("EVENT:will-create", {
+                socket.emit("Event:will-create", {
                     data: "web"
                 });
             });
 
-            socket.on("EVENT:did-create", function(data) {
+            $('#fireGlobalEvent').on('click', function(e) {
+                e.stopPropagation();
+
+                socket.emit("EVENT:globalEvent", "global event");
+            });
+
+            socket.on("Event:did-create", function(data) {
+                console.log(data);
+            });
+
+            socket.on("globalEvent", function(data) {
                 console.log(data);
             });
 

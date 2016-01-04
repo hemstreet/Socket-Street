@@ -5,13 +5,17 @@ client = io.connect('http://localhost:3000');
 client.on('connect',function() {
 
     setTimeout(function() {
-        client.emit("EVENT:will-create", {
+        client.emit("Event:will-create", {
             data: "server client"
         });
     }, 2000);
 
-    client.on('EVENT:did-create', function(data) {
+    client.on('Event:did-create', function(data) {
         console.log(data);
     });
+
+    client.on('globalEvent', function(data) {
+        console.log('global event', data);
+    })
 
 });
