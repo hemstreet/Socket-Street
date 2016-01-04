@@ -1,30 +1,31 @@
 var config = require('../config/config'),
+    Database = require('./Database'),
     _ = require('lodash');
 
 var Crud = function(_config) {
     this.config = {};
     _.extend(this.config, config, _config);
 
-    this.mongoose = require('mongoose');
-    this.mongoose.connect(this.config.mongo);
+    var database = new Database();
+    this.mongoose = database.getMongoose();
 
-    var EventSchema = new this.mongoose.Schema({
-        title     : { type: String, default: 'test event' },
-        body      : { type: String, default: 'test body' }
-    });
-
-    this.mongoose.model('Event', EventSchema);
-
-    this.MyModel = this.mongoose.model('Event');
 };
 
 Crud.prototype.create = function(socket, data) {
 
-    var event = new this.MyModel();
+    var Model = this.mongoose.model(data.modelName),
+        model = new Model(),
+        modelData = data.data;
 
-    event.title = "new test title";
+    if(modelData.title) {
+        model.title = modelData.title;
+    }
 
-    event.save(function(err) {
+    if(modelData.body) {
+        model.body = modelData.body;
+    }
+
+    model.save(function(err) {
         if(err) {
             console.log(err);
             return;
@@ -32,7 +33,7 @@ Crud.prototype.create = function(socket, data) {
 
         socket.emit(this.config.events.didCreate, {
             message: "success",
-            model: "sdf"
+            model: model
         });
 
     }.bind(this));

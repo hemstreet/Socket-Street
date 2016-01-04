@@ -1,0 +1,13 @@
+{
+  "name": "Bottle",
+  "fields" : {
+    "title": {
+      "type": "String",
+      "default": "test event"
+    },
+    "body": {
+      "type": "String",
+      "default": "test bottle"
+    }
+  }
+}

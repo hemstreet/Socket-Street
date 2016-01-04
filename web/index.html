@@ -5,17 +5,42 @@
     <script src="//cdn.socket.io/socket.io-1.3.7.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <a href="#" id="fireEvent">Fire Event!</a>
+    <a href="#" id="fireEventBottle">Fire Bottle Event!</a>
     <a href="#" id="fireGlobalEvent">Fire Global Event!</a>
     <script>
         (function($) {
             var socket = io.connect('//localhost:3000');
 
+            var x = 0;
+
             $('#fireEvent').on('click', function(e) {
                 e.stopPropagation();
 
                 socket.emit("Event:will-create", {
-                    data: "web"
+                    modelName: "Event",
+                    data: {
+                        "title" : "Test title from browser",
+                        "body" : "Test bodyfrom browser " + x
+                    }
                 });
+
+                x++;
+
+            });
+
+            $('#fireEventBottle').on('click', function(e) {
+                e.stopPropagation();
+
+                socket.emit("Event:will-create", {
+                    modelName: "Bottle",
+                    data: {
+                        "title" : "Test title bottle",
+                        "body" : "Test bottle from browser " + x
+                    }
+                });
+
+                x++;
+
             });
 
             $('#fireGlobalEvent').on('click', function(e) {
