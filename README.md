@@ -10,7 +10,7 @@ interface to manage the collections. This will act as a supporting platform for 
 **Goals**
  
 * [ ] Fire events for CRUD, data passed is `{ model: model, data, data }` for update pass GUID
-* [ ] Integrate mongoose
+* [x] Integrate mongoose
 * [ ] Implement Angular admin panel
 * [ ] Apply styles to front end
 
