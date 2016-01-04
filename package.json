@@ -1,0 +1,10 @@
+{
+  "name": "socket-street",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Jon Hemstreet",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^1.3.7"
+  }
+}
