@@ -14,14 +14,24 @@ var io = require('socket.io').listen(3000),
 
 io.sockets.on('connection', function (socket) {
 
-    socket.on("Event:will-create", function(data) {
-
-        console.log('event will create');
+    socket.on(config.events.willCreate, function(data) {
         crud.create(socket, data);
     });
 
-    socket.on("EVENT:globalEvent", function(data) {
-        io.sockets.emit('globalEvent', data);
+    socket.on(config.events.willFind, function(data) {
+        crud.find(socket, data);
+    });
+
+    socket.on(config.events.willFindById, function(data) {
+        crud.findById(socket, data);
+    });
+
+    socket.on(config.events.willUpdate, function(data) {
+        crud.update(socket, data);
+    });
+
+    socket.on(config.events.willUpdateById, function(data) {
+        crud.updateById(socket, data);
     });
 
 });

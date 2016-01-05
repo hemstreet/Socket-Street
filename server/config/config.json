@@ -3,11 +3,17 @@
   "events" : {
     "willCreate" : "Event:will-create",
     "didCreate" : "Event:did-create",
-    "willRead" : "Event:will-read",
-    "didRead" : "Event:did-read",
+    "willFind" : "Event:will-find",
+    "didFind" : "Event:did-find",
+    "willFindById" : "Event:will-find-by-id",
+    "didFindById" : "Event:did-find-by-id",
     "willUpdate" : "Event:will-update",
     "didUpdate" : "Event:did-update",
+    "willUpdateById" : "Event:will-update-by-id",
+    "didUpdateById" : "Event:did-update-by-id",
     "willDelete" : "Event:will-delete",
-    "didDelete" : "Event:did-delete"
-  }
+    "didDelete" : "Event:did-delete",
+    "didErrorOnCreate" : "Event:did-error-on-create",
+    "didErrorOnFindById" : "Event:did-error-on-find-by-id"
+    }
 }

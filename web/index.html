@@ -4,23 +4,28 @@
 <body>
     <script src="//cdn.socket.io/socket.io-1.3.7.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
     <a href="#" id="fireEvent">Fire Event!</a>
-    <a href="#" id="fireEventBottle">Fire Bottle Event!</a>
-    <a href="#" id="fireGlobalEvent">Fire Global Event!</a>
+    <a href="#" id="find">Find</a>
+    <a href="#" id="findById">Find By Id</a>
+    <a href="#" id="update">Update</a>
+    <a href="#" id="updateById">Update By Id</a>
+
     <script>
         (function($) {
             var socket = io.connect('//localhost:3000');
 
             var x = 0;
 
+            // Creat
             $('#fireEvent').on('click', function(e) {
                 e.stopPropagation();
 
                 socket.emit("Event:will-create", {
-                    modelName: "Event",
+                    modelName: "User",
                     data: {
-                        "title" : "Test title from browser",
-                        "body" : "Test bodyfrom browser " + x
+                        "username": "DemoUsername" + x,
+                        "password" : "password"
                     }
                 });
 
@@ -28,32 +33,87 @@
 
             });
 
-            $('#fireEventBottle').on('click', function(e) {
+            // find
+            $('#find').on('click', function(e) {
                 e.stopPropagation();
 
-                socket.emit("Event:will-create", {
-                    modelName: "Bottle",
-                    data: {
-                        "title" : "Test title bottle",
-                        "description" : "description of bottle number " + x
+                // query optional for findAll
+                socket.emit("Event:will-find", {
+                    modelName: "User",
+                    query: {
+                        username: "DemoUsername1"
                     }
                 });
 
-                x++;
+            });
+            $('#findById').on('click', function(e) {
+                e.stopPropagation();
+
+                var realId = "568b387a25f61b3f50dda399";
+                // query optional for findAll
+                socket.emit("Event:will-find-by-id", {
+                    modelName: "User",
+                    id: "sdfsdfsdf"
+                });
 
             });
 
-            $('#fireGlobalEvent').on('click', function(e) {
+
+            $('#update').on('click', function(e) {
                 e.stopPropagation();
 
-                socket.emit("EVENT:globalEvent", "global event");
+                // query optional for findAll
+                socket.emit("Event:will-update", {
+                    modelName: "User",
+                    query: {
+                        "username" : "DemoUsername0"
+                    },
+                    data: {
+                        "username" : "balls2"
+                    }
+                });
+
+            });
+            $('#updateById').on('click', function(e) {
+                e.stopPropagation();
+
+                // query optional for findAll
+                socket.emit("Event:will-update-by-id", {
+                    modelName: "User",
+                    id: "568b387a25f61b3f50dda399",
+                    data: {
+                        "username" : "thisIsACoolName"
+                    }
+                });
+
             });
 
             socket.on("Event:did-create", function(data) {
                 console.log(data);
             });
+            socket.on("Event:did-find", function(data) {
+                console.log(data);
+            });
+            socket.on("Event:did-find-by-id", function(data) {
+                console.log(data);
+            });
+            socket.on("Event:did-update", function(data) {
+                console.log(data);
+            });
+            socket.on("Event:did-update-by-id", function(data) {
+                console.log(data);
+            });
 
-            socket.on("globalEvent", function(data) {
+            /*
+             ERRORS!
+             */
+            socket.on("Event:did-error-on-create", function(data) {
+                console.log(data);
+            });
+            socket.on("Event:did-error-on-find-by-id", function(data) {
+                console.log(data);
+            });
+            socket.on("Event:did-error-on-update", function(data) {
                 console.log(data);
             });
 
