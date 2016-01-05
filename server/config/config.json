@@ -13,7 +13,7 @@
     "didUpdateById" : "Event:did-update-by-id",
     "willDelete" : "Event:will-delete",
     "didDelete" : "Event:did-delete",
-    "didErrorOnCreate" : "Event:did-error-on-create",
-    "didErrorOnFindById" : "Event:did-error-on-find-by-id"
+    "willDeleteById" : "Event:will-delete-by-id",
+    "didDeleteById" : "Event:did-delete-by-id"
     }
 }

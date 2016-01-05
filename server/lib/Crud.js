@@ -25,16 +25,9 @@ Crud.prototype.create = function(socket, data) {
     });
 
     model.save(function(error) {
-        if(error) {
-            socket.emit(this.config.events.didErrorOnCreate, {
-                error: error
-            });
-
-            return;
-        }
-
         socket.emit(this.config.events.didCreate, {
-            model: model
+            model: model,
+            error: error
         });
 
     }.bind(this));
@@ -46,14 +39,10 @@ Crud.prototype.find = function(socket, options) {
         query = options.query || {};
 
     Model.find(query, function(error, model) {
-        if (error) {
-            console.log(error);
-            return;
-        }
-
         // show the one user
         socket.emit(this.config.events.didFind, {
-            model: model
+            model: model,
+            error: error
         })
     }.bind(this));
 };
@@ -63,14 +52,10 @@ Crud.prototype.findById = function(socket, options) {
     var Model = this.getModel(options.modelName);
 
     Model.findById(options.id, function(error, model) {
-        if(error) {
-            socket.emit(this.config.events.didErrorOnFindById, {
-                error: error
-            });
-            return;
-        }
-
-        socket.emit(this.config.events.didFindById, model);
+        socket.emit(this.config.events.didFindById, {
+            model: model,
+            error: error
+        });
 
     }.bind(this));
 };
@@ -87,7 +72,8 @@ Crud.prototype.update = function(socket, options) {
         // If it passes back a model it was a success
         socket.emit(this.config.events.didUpdate, {
             model: model,
-            fields: data
+            fields: data,
+            error: error
         });
 
     }.bind(this));
@@ -104,14 +90,33 @@ Crud.prototype.updateById = function(socket, options) {
         // If it passes back a model it was a success
         socket.emit(this.config.events.didupdateById, {
             model: model,
-            fields: data
+            fields: data,
+            error: error
         });
 
     }.bind(this));
 };
 
 Crud.prototype.delete = function(socket, options) {
-    console.log('delete logic');
+    var Model = this.getModel(options.modelName);
+
+    Model.findOneAndRemove(options.query, function(error) {
+        socket.emit(this.config.events.didDelete, {
+            error: error
+        });
+
+    }.bind(this));
+};
+
+Crud.prototype.deleteById = function(socket, options) {
+    var Model = this.getModel(options.modelName);
+
+    Model.findByIdAndRemove(options.id, function(error) {
+        socket.emit(this.config.events.didDeleteById, {
+            error: error
+        });
+
+    }.bind(this));
 };
 
 Crud.prototype.getModel = function(modelName) {

@@ -10,6 +10,8 @@
     <a href="#" id="findById">Find By Id</a>
     <a href="#" id="update">Update</a>
     <a href="#" id="updateById">Update By Id</a>
+    <a href="#" id="removeUser">Remove User</a>
+    <a href="#" id="removeUserById">Remove User By Id</a>
 
     <script>
         (function($) {
@@ -88,6 +90,29 @@
 
             });
 
+            $('#removeUser').on('click', function(e) {
+                e.stopPropagation();
+
+                // query optional for findAll
+                socket.emit("Event:will-delete", {
+                    modelName: "User",
+                    query: {
+                        "username" : "DemoUsername11"
+                    }
+                });
+
+            });
+            $('#removeUserById').on('click', function(e) {
+                e.stopPropagation();
+
+                // query optional for findAll
+                socket.emit("Event:will-delete-by-id", {
+                    modelName: "User",
+                    id: "568b473fb6ffa12d535e89be"
+                });
+
+            });
+
             socket.on("Event:did-create", function(data) {
                 console.log(data);
             });
@@ -103,17 +128,7 @@
             socket.on("Event:did-update-by-id", function(data) {
                 console.log(data);
             });
-
-            /*
-             ERRORS!
-             */
-            socket.on("Event:did-error-on-create", function(data) {
-                console.log(data);
-            });
-            socket.on("Event:did-error-on-find-by-id", function(data) {
-                console.log(data);
-            });
-            socket.on("Event:did-error-on-update", function(data) {
+            socket.on("Event:did-delete", function(data) {
                 console.log(data);
             });
 

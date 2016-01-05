@@ -34,4 +34,12 @@ io.sockets.on('connection', function (socket) {
         crud.updateById(socket, data);
     });
 
+    socket.on(config.events.willDelete, function(data) {
+        crud.delete(socket, data);
+    });
+
+    socket.on(config.events.willDeleteById, function(data) {
+        crud.deleteById(socket, data);
+    });
+
 });
